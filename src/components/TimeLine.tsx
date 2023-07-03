@@ -22,7 +22,7 @@ function TimeLine(props: { historyDataList: HistoryData[] }): JSX.Element {
                   sx={{ colr: 'white', backgroundColor: 'green' }}
                   onClick={() => {
                     window.open(
-                      `https://testnet.symbol.fyi/accounts/${historyData.hash}`,
+                      `https://testnet.symbol.fyi/transactions/${historyData.hash}`,
                       '_blank'
                     );
                   }}
