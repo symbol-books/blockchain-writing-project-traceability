@@ -68,22 +68,10 @@ export default async function handler(
       []
     ).setMaxFeeForAggregate(100, 1);
 
-    const adminSignedTx = admin.sign(aggregateTx, generationHash);
-
-    const cosignedTransactionTarget = CosignatureTransaction.signTransactionPayload(
-      targetAccount,
-      adminSignedTx.payload,
-      generationHash
-    );
-
-    const rectreatedAggregateTransactionFromPayload = TransactionMapping.createFromPayload(
-      adminSignedTx.payload
-    ) as AggregateTransaction;
-
-    const signedTx = admin.signTransactionGivenSignatures(
-      rectreatedAggregateTransactionFromPayload,
-      [cosignedTransactionTarget],
-      generationHash
+    const signedTx = admin.signTransactionWithCosignatories(
+      aggregateTx,
+      [targetAccount],
+      generationHash,
     );
 
     await firstValueFrom(txRepo.announce(signedTx));
