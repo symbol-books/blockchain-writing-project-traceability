@@ -52,6 +52,7 @@ function Record(): JSX.Element {
         longitude: parseFloat(position.coords.longitude.toFixed(1)),
       },
     };
+    setPosition(maskedPosition);
   }
   function errorCallback(error: GeolocationPositionError) {
     console.log(error);
@@ -157,8 +158,7 @@ function Record(): JSX.Element {
           display='flex'
           alignItems='center'
           justifyContent='center'
-          flexDirection='column'
-        >
+          flexDirection='column'>
           {targetAddress ? (
             <>
               <Typography component='div' variant='h6' sx={{ mt: 5, mb: 5 }}>
@@ -191,8 +191,7 @@ function Record(): JSX.Element {
                     label='Operation'
                     onChange={(event) => {
                       setOperation(event.target.value as string);
-                    }}
-                  >
+                    }}>
                     <MenuItem value={'着荷'}>着荷</MenuItem>
                     <MenuItem value={'加工'}>加工</MenuItem>
                     <MenuItem value={'出荷'}>出荷</MenuItem>
@@ -207,8 +206,7 @@ function Record(): JSX.Element {
                   setDialogTitle('情報の記録');
                   setDialogMessage('この情報を記録しますか？');
                   setOpenDialog(true);
-                }}
-              >
+                }}>
                 記録へ進む
               </Button>
             </>
