@@ -44,7 +44,14 @@ function Record(): JSX.Element {
   }, []);
 
   function successCallback(position: GeolocationPosition) {
-    setPosition(position);
+    const maskedPosition = {
+      ...position,
+      coords: {
+        ...position.coords,
+        latitude: parseFloat(position.coords.latitude.toFixed(1)),
+        longitude: parseFloat(position.coords.longitude.toFixed(1)),
+      },
+    };
   }
   function errorCallback(error: GeolocationPositionError) {
     console.log(error);
