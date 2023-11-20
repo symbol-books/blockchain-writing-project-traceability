@@ -44,7 +44,7 @@ function Record(): JSX.Element {
   }, []);
 
   function successCallback(position: GeolocationPosition) {
-    const maskedPosition = {
+    const maskedPosition = { //位置情報配慮のため、小数点第一位までに丸めるコードを追加しています。
       ...position,
       coords: {
         ...position.coords,
